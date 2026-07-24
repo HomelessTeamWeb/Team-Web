@@ -8,8 +8,9 @@
     "date": "2026-07-24",
     "tags": ["Legal", "EULA"],
     "languages": {
-      "vi": "vi/eula.md",
-      "en": "en/eula.md"
+     "en": "en/eula.md",
+     "vi": "vi/eula.md"
     }
   }
 ]
+  
