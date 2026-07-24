@@ -1,0 +1,15 @@
+[
+  {
+    "id": "eula",
+    "title": {
+      "vi": "Thỏa thuận cấp phép người dùng cuối",
+      "en": "End User License Agreement"
+    },
+    "date": "2026-07-24",
+    "tags": ["Legal", "EULA"],
+    "languages": {
+      "vi": "vi/eula.md",
+      "en": "en/eula.md"
+    }
+  }
+]
