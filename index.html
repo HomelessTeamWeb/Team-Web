@@ -127,7 +127,7 @@
   .status-card h3{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.6vw,1.9rem);text-transform:uppercase;}
   .status-card p{color:var(--ink-dim);font-size:14px;max-width:420px;line-height:1.8;}
 
-  /* Members */
+  /* Members / generic list rows (reused by Copyright too) */
   .case-row{position:relative;display:flex;justify-content:space-between;align-items:center;padding:40px 0;border-bottom:1px solid var(--line);transition:padding .5s var(--ease);cursor:pointer;}
   .case-row:hover{padding-left:24px;}
   .case-left{display:flex;align-items:baseline;gap:28px;}
@@ -162,6 +162,73 @@
   .video-info .v-title{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:1.05rem;margin-bottom:8px;}
   .video-info .v-meta{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-faint);letter-spacing:.08em;text-transform:uppercase;}
 
+  /* ===== Copyright: khối mới, tận dụng lại class case-row/sec-head hiện có ===== */
+  .doc-list{min-height:80px;}
+  .doc-empty,.doc-loading{
+    padding:44px 0;font-family:'JetBrains Mono',monospace;font-size:12px;
+    color:var(--ink-faint);letter-spacing:.08em;text-transform:uppercase;
+  }
+  .doc-list .case-tags{max-width:220px;}
+  .doc-tagpill{
+    display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;
+    color:var(--neon2);border:1px solid var(--line);border-radius:100px;padding:3px 10px;
+    margin:2px 0 0 0;text-transform:uppercase;
+  }
+
+  /* Reader modal — dùng chung cho mọi tài liệu markdown mở từ doc-list */
+  .doc-reader{
+    position:fixed;inset:0;z-index:2000;
+    background:rgba(10,10,10,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    display:flex;align-items:flex-start;justify-content:center;
+    padding:100px 24px 60px;opacity:0;pointer-events:none;
+    transition:opacity .4s var(--ease);
+  }
+  .doc-reader.show{opacity:1;pointer-events:auto;}
+  .doc-reader .reader-inner{
+    position:relative;max-width:820px;width:100%;max-height:78vh;overflow-y:auto;
+    background:var(--bg-alt);border:1px solid var(--line);border-radius:6px;
+    padding:56px;box-shadow:0 40px 100px -20px rgba(0,0,0,.85);
+    transform:translateY(16px);transition:transform .4s var(--ease);
+  }
+  .doc-reader.show .reader-inner{transform:translateY(0);}
+  .reader-close{
+    position:absolute;top:20px;right:20px;font-family:'JetBrains Mono',monospace;font-size:10px;
+    letter-spacing:.1em;color:var(--ink-dim);border:1px solid var(--line);padding:8px 14px;
+    border-radius:100px;text-transform:uppercase;transition:border-color .3s,color .3s;
+  }
+  .reader-close:hover{color:#fff;border-color:#fff;}
+  .reader-meta{
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:#fff;
+    letter-spacing:.15em;text-transform:uppercase;margin-bottom:22px;
+  }
+
+  .markdown-body h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(1.7rem,3.6vw,2.5rem);line-height:1.2;text-transform:uppercase;letter-spacing:-.01em;margin:0 0 24px;}
+  .markdown-body h2{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(1.3rem,2.6vw,1.7rem);color:#fff;margin:36px 0 16px;text-transform:uppercase;}
+  .markdown-body h3{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:1.15rem;color:var(--neon2);margin:28px 0 14px;}
+  .markdown-body p{color:var(--ink-dim);font-size:15px;line-height:1.9;margin-bottom:18px;}
+  .markdown-body a{color:#fff;border-bottom:1px solid rgba(255,255,255,.4);transition:color .3s,border-color .3s;}
+  .markdown-body a:hover{color:var(--neon2);border-color:var(--neon2);}
+  .markdown-body ul,.markdown-body ol{color:var(--ink-dim);font-size:15px;line-height:1.85;margin:0 0 20px 22px;}
+  .markdown-body li{margin-bottom:8px;}
+  .markdown-body blockquote{
+    border-left:3px solid var(--neon2);padding:4px 22px;margin:26px 0;color:var(--ink-dim);
+    font-style:italic;background:rgba(255,255,255,.04);
+  }
+  .markdown-body code{
+    font-family:'JetBrains Mono',monospace;font-size:13px;color:#fff;
+    background:rgba(255,255,255,.08);padding:2px 7px;border-radius:4px;
+  }
+  .markdown-body pre{
+    background:#0e0e0e;border:1px solid var(--line);border-left:3px solid #fff;
+    padding:22px 24px;border-radius:6px;overflow-x:auto;margin:26px 0;
+  }
+  .markdown-body pre code{background:none;padding:0;color:var(--ink);font-size:13px;line-height:1.7;}
+  .markdown-body img{max-width:100%;border-radius:6px;margin:24px 0;display:block;}
+  .markdown-body hr{border:none;border-top:1px solid var(--line);margin:36px 0;}
+  .markdown-body table{width:100%;border-collapse:collapse;margin:26px 0;font-size:14px;}
+  .markdown-body th,.markdown-body td{border:1px solid var(--line);padding:10px 14px;text-align:left;color:var(--ink-dim);}
+  .markdown-body th{color:var(--ink);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;}
+
   /* Contact */
   .contact{padding:120px 0 90px;position:relative;}
   .contact .tag{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;color:#fff;text-transform:uppercase;margin-bottom:24px;display:block;}
@@ -189,6 +256,9 @@
     #cur-dot,#cur-ring{display:none;}
     body{cursor:auto;}
     .status-card{padding:40px 22px;}
+    .doc-reader{padding:70px 14px 30px;}
+    .doc-reader .reader-inner{padding:30px 22px;max-height:82vh;}
+    .reader-close{top:14px;right:14px;}
   }
   @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
 </style>
@@ -206,6 +276,7 @@
     <a href="#project" class="hoverable">Dự án</a>
     <a href="#crew" class="hoverable">Thành viên</a>
     <a href="#video" class="hoverable">Video</a>
+    <a href="#copyright" class="hoverable">Copyright</a>
     <a href="#contact" class="hoverable">Liên hệ</a>
   </nav>
 </header>
@@ -325,6 +396,26 @@
   </div>
 </section>
 
+<!-- ===== Copyright: danh sách tài liệu pháp lý, đọc từ copyright/index.json ===== -->
+<section class="wrap" id="copyright">
+  <div class="sec-head">
+    <div>
+      <span class="tag">Legal</span>
+      <h2>Copyright & Chính sách</h2>
+    </div>
+    <p>Điều khoản sử dụng, quyền riêng tư và giấy phép cho các sản phẩm của Homeless Team.</p>
+  </div>
+
+  <div class="doc-list" id="copyrightList">
+    <div class="doc-loading">Đang tải danh sách tài liệu…</div>
+  </div>
+</section>
+
+<!-- Reader modal dùng chung cho mọi tài liệu markdown -->
+<div class="doc-reader" id="docReader">
+  <div class="reader-inner" id="readerInner"></div>
+</div>
+
 <section class="contact wrap" id="contact">
   <span class="tag">Tham gia cùng team</span>
   <h2>Không cần nhà. Chỉ cần muốn ship.</h2>
@@ -354,6 +445,7 @@
   <span>No home, just ship.</span>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
 const dot = document.getElementById('cur-dot');
 const ring = document.getElementById('cur-ring');
@@ -392,6 +484,141 @@ function tick(){
 }
 tick();
 setInterval(tick, 1000);
+
+/* =========================================================================
+   Copyright / Document system
+   - Đọc copyright/index.json, render danh sách bằng case-row có sẵn.
+   - Khi click, mở modal reader và render Markdown bằng marked.js.
+   - Ngôn ngữ hiện tại lấy từ thuộc tính lang của <html> (mặc định 'vi').
+     Nếu index.json không có bản dịch cho ngôn ngữ đó, tự fallback sang 'en'.
+   - Viết dạng hàm dùng chung (loadDocIndex/renderDocList/openDoc) để nếu
+     sau này có thêm mục Blog, có thể gọi lại các hàm này thay vì copy code.
+   ========================================================================= */
+
+const copyrightListEl = document.getElementById('copyrightList');
+const docReader = document.getElementById('docReader');
+const readerInner = document.getElementById('readerInner');
+
+if (window.marked) {
+  marked.setOptions({ breaks: true, gfm: true });
+}
+
+const currentLang = (document.documentElement.lang || 'vi').slice(0, 2);
+
+function escapeHtml(str){
+  return String(str)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// Hỗ trợ title dạng string đơn giản hoặc object {vi,en,...}
+function resolveTitle(title){
+  if (typeof title === 'string') return title;
+  if (title && typeof title === 'object'){
+    return title[currentLang] || title.en || Object.values(title)[0] || 'Untitled';
+  }
+  return 'Untitled';
+}
+
+// Hỗ trợ field `file` (đơn ngôn ngữ) hoặc `languages` (đa ngôn ngữ, có fallback 'en')
+function resolveFilePath(item){
+  if (item.file) return item.file;
+  if (item.languages){
+    return item.languages[currentLang] || item.languages.en || Object.values(item.languages)[0];
+  }
+  return null;
+}
+
+function renderDocList(container, items, baseFolder){
+  container.innerHTML = '';
+  items.forEach((item, i)=>{
+    const row = document.createElement('div');
+    row.className = 'case-row hoverable';
+    row.tabIndex = 0;
+
+    const tagsHtml = Array.isArray(item.tags) && item.tags.length
+      ? item.tags.map(t=>`<span class="doc-tagpill">${escapeHtml(t)}</span>`).join(' ')
+      : '';
+
+    row.innerHTML = `
+      <div class="case-left">
+        <span class="case-index">${String(i+1).padStart(2,'0')}</span>
+        <span class="case-title">${escapeHtml(resolveTitle(item.title))}</span>
+      </div>
+      <div class="case-right">
+        <span class="case-tags">${escapeHtml(item.date || '')}<br>${tagsHtml}</span>
+        <span class="case-arrow">↗</span>
+      </div>
+    `;
+    bindHoverable(row);
+    const open = ()=> openDoc(item, baseFolder);
+    row.addEventListener('click', open);
+    row.addEventListener('keydown', e=>{ if(e.key === 'Enter') open(); });
+    container.appendChild(row);
+  });
+}
+
+async function loadDocIndex(indexUrl, container, baseFolder, emptyMsg, errorMsg){
+  try{
+    const res = await fetch(indexUrl, { cache: 'no-store' });
+    if(!res.ok) throw new Error('index.json not found');
+    const items = await res.json();
+    if(!Array.isArray(items) || items.length === 0){
+      container.innerHTML = `<div class="doc-empty">${emptyMsg}</div>`;
+      return;
+    }
+    renderDocList(container, items, baseFolder);
+  }catch(err){
+    container.innerHTML = `<div class="doc-empty">${errorMsg}</div>`;
+  }
+}
+
+async function openDoc(item, baseFolder){
+  docReader.classList.add('show');
+  readerInner.innerHTML = `
+    <div class="reader-close" id="readerClose">Đóng ✕</div>
+    <div class="reader-meta">Đang tải nội dung…</div>
+  `;
+  document.getElementById('readerClose').addEventListener('click', closeReader);
+
+  const filePath = resolveFilePath(item);
+  try{
+    if(!filePath) throw new Error('no file path resolved');
+    const res = await fetch(baseFolder + filePath, { cache: 'no-store' });
+    if(!res.ok) throw new Error('md file not found');
+    const mdText = await res.text();
+    const html = window.marked ? marked.parse(mdText) : '<p>marked.js chưa tải được.</p>';
+    const metaParts = [];
+    if(item.date) metaParts.push(escapeHtml(item.date));
+    if(Array.isArray(item.tags) && item.tags.length) metaParts.push(item.tags.map(escapeHtml).join(', '));
+
+    readerInner.innerHTML = `
+      <div class="reader-close" id="readerClose">Đóng ✕</div>
+      <div class="reader-meta">${metaParts.join(' — ')}</div>
+      <div class="markdown-body">${html}</div>
+    `;
+    document.getElementById('readerClose').addEventListener('click', closeReader);
+    readerInner.scrollTop = 0;
+  }catch(err){
+    readerInner.innerHTML = `
+      <div class="reader-close" id="readerClose">Đóng ✕</div>
+      <p style="color:var(--ink-dim)">Không tải được nội dung tài liệu${filePath ? ' (' + escapeHtml(filePath) + ')' : ''}.</p>
+    `;
+    document.getElementById('readerClose').addEventListener('click', closeReader);
+  }
+}
+
+function closeReader(){
+  docReader.classList.remove('show');
+}
+docReader.addEventListener('click', e=>{ if(e.target === docReader) closeReader(); });
+document.addEventListener('keydown', e=>{ if(e.key === 'Escape') closeReader(); });
+
+loadDocIndex(
+  'copyright/index.json', copyrightListEl, 'copyright/',
+  'Chưa có tài liệu nào. Thêm mục vào copyright/index.json.',
+  'Không tải được danh sách tài liệu (copyright/index.json).'
+);
 </script>
 
 </body>
